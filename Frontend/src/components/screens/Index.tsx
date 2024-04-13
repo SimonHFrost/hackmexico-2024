@@ -1,10 +1,10 @@
 import { Dialog } from '@headlessui/react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useAuthState } from '~/components/contexts/UserContext';
 import { Head } from '~/components/shared/Head';
+import L from 'leaflet';
 
 function Index() {
-  const { state } = useAuthState();
   const [isOpen, setIsOpen] = useState(false);
   const completeButtonRef = useRef(null);
 
@@ -12,17 +12,8 @@ function Index() {
     <>
       <Head title="Dorado Dumpster"/>
       <div className="hero min-h-screen">
-        <div className="text-center hero-content">
-          <img className="image-rotate" src="src/dumpster-hero.png" width="200px"/>
-          <div>
-            <h1 className="text-3xl font-bold">
-              Dorado Dumpster
-            </h1>
-            <p className="mt-4 text-lg">
-              Find your next treasure
-            </p>
-          </div>
-        </div>
+
+        <div id="the-map" style={{width:"200px", height:"200px"}}></div>
       </div>
       <Dialog
         className="flex fixed inset-0 z-10 overflow-y-auto"
