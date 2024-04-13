@@ -5,7 +5,7 @@ import { Head } from '~/components/shared/Head';
 
 function Index() {
   const { state } = useAuthState();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const completeButtonRef = useRef(null);
 
   return (
