@@ -1,0 +1,5 @@
+class: Dumpster
+table: dumpster
+fields:
+  latitude: double
+  longitude: double

@@ -1,0 +1,3 @@
+dumpsters:
+  - getAllDumpsters:
+  - createDumpster:

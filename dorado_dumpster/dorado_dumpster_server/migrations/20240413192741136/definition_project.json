@@ -1,0 +1,59 @@
+{
+  "moduleName": "dorado_dumpster",
+  "tables": [
+    {
+      "name": "dumpster",
+      "dartName": "Dumpster",
+      "module": "dorado_dumpster",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "id",
+          "columnType": 2,
+          "isNullable": false,
+          "columnDefault": "nextval('dumpster_id_seq'::regclass)",
+          "dartType": "int?"
+        },
+        {
+          "name": "latitude",
+          "columnType": 3,
+          "isNullable": false,
+          "dartType": "double"
+        },
+        {
+          "name": "longitude",
+          "columnType": 3,
+          "isNullable": false,
+          "dartType": "double"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "indexName": "dumpster_pkey",
+          "elements": [
+            {
+              "type": 0,
+              "definition": "id"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": true
+        }
+      ],
+      "managed": true
+    }
+  ],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20240115074235544"
+    },
+    {
+      "module": "dorado_dumpster",
+      "version": "20240413192544577"
+    }
+  ],
+  "migrationApiVersion": 1
+}
