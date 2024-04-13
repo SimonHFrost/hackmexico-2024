@@ -1,24 +1,27 @@
-import L from 'leaflet';
+import L, { map } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 function MapPage() {
+    var map: L.Map;
+
     function addIcon(map: L.Map, latLng: Array<number>) {
         var icon = L.icon({
             iconUrl: 'src/map-icon.png',
-            iconSize:     [32, 32], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            iconSize: [32, 32], // size of the icon
+            shadowSize: [50, 64], // size of the shadow
+            iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        L.marker([latLng[0], latLng[1]], {icon: icon}).addTo(map);
+        L.marker([latLng[0], latLng[1]], { icon: icon }).addTo(map);
     }
 
     useEffect(() => {
-        const map = L.map('the-map', {
-            center: L.latLng(19.4988265,-99.1422943),
+        map = L.map('the-map', {
+            center: L.latLng(19.4988265, -99.1422943),
             zoom: 15,
         });
 
@@ -32,9 +35,48 @@ function MapPage() {
             crossOrigin: true
         }).addTo(map);
 
-        addIcon(map, [19.4988265,-99.1422943]);
+        var dummyData = [
+            [19.4988265, -99.1422943],
+            [19.4988465, -99.1423943],
+            [19.4928265, -99.1432943],
+        ];
+
+        // fetchData().then(something => {
+        //     if (!something.latLons) {
+        //         dummyData = latLons;
+        //     }
+
+        //     dummyData.forEach(element => {
+        //         addIcon(map, [element[0], element[1]]);
+        //     });
+        // });
+
+        dummyData.forEach(latLon => {
+            addIcon(map, latLon);
+        })
     }, []);
 
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://api.example.com/data');
+            console.log('Data fetched:', response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const sendData = async () => {
+        try {
+            const location = map.getCenter();
+            console.log(location);
+            const response = await axios.post('https://api.example.com/data', {
+                lat: location.lat,
+                lng: location.lng,
+            });
+        } catch (error) {
+            console.error('Error');
+        }
+    }
 
     return (
         <div>
@@ -51,6 +93,10 @@ function MapPage() {
             </div>
             <div className="mx-8 map-container" style={{ display: 'relative' }}>
                 <div id="the-map"></div>
+            </div>
+            <div className="m-8 text-center">
+                <button className="btn" onClick={() => { sendData() }}>
+                Add dumpster location</button>
             </div>
         </div>
     );
