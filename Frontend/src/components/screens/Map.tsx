@@ -18,6 +18,17 @@ function MapPage() {
             attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
             crossOrigin: true
         }).addTo(map);
+
+        var greenIcon = L.icon({
+            iconUrl: 'src/map-icon.png',
+            iconSize:     [32, 32], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        L.marker([19.4988265,-99.1422943], {icon: greenIcon}).addTo(map);
     }, []);
 
     return (
