@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 function MapPage() {
     useEffect(() => {
         const map = L.map('the-map', {
-            center: L.latLng(19.500568, -99.141028),
+            center: L.latLng(19.4988265,-99.1422943),
             zoom: 15,
         });
 
@@ -33,8 +33,7 @@ function MapPage() {
                     </p>
                 </div>
             </div>
-            <div className="m-8 map-container" style={{ display: 'relative' }}>
-                <h1>Map Page</h1>
+            <div className="mx-8 map-container" style={{ display: 'relative' }}>
                 <div id="the-map"></div>
             </div>
         </div>

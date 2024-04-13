@@ -12,8 +12,9 @@ const MapScreen = lazy(() => import('~/components/screens/map'));
 function Layout() {
   return (
     <div>
-      <nav className="p-4 flex items-center justify-between">
-        <span>Header</span>
+      <nav className="flex p-4">
+        <img className="mr-2" width="32px" src="src/favicon.png"/>
+        <span>Dorado Dumpster</span>
       </nav>
       <Outlet />
     </div>
